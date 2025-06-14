@@ -6,9 +6,15 @@ import App from './App.jsx'
 export const context =createContext();
 
 const Red=()=>{
-  const [a,b]=useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, settoken] = useState("");
   return(
-     <context.Provider value={{a,b}}>
+     <context.Provider value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        token, 
+        settoken,
+      }}>
      <App />
      </context.Provider>
   )
@@ -18,3 +24,6 @@ createRoot(document.getElementById('root')).render(
     <Red/>
   </StrictMode>,
 )
+
+
+ 

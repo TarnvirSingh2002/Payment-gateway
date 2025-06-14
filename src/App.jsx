@@ -1,15 +1,18 @@
-import React, { useContext, useState } from 'react'
-import { context } from './main';
+import React from 'react'
+import Login from './Components/Login'
+import SignIn from './Components/SignIn'
+import './App.css';
 
 export default function App() {
-  const [state,setstate]=useState(true);
-  const {a,b}=useContext(context);
-
-
   return (
-    <div style={state===true?{backgroundColor:"white"}:{height:"100vh",backgroundColor:"black"}}>
-        <button style={{height:"50px"}} onClick={()=>{setstate(state===true?false:true)}}>click me</button>    
-        <button onClick={()=>{b(a+1)}}>ticj me {a}</button>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Login/>}/>
+          <Route path="/SignIn" element={<SignIn/>}/>
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   )
 }
