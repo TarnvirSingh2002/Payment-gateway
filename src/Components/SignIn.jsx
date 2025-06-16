@@ -18,7 +18,7 @@ export default function SignIn() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:4000/api/use/signup", {
+            const response = await fetch("http://localhost:5000/api/payment/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function SignIn() {
                 <h2 className="login-title">Please Registered Your Self</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
                      <input type="string" value={data.name} name='name'
-                        onChange={handleChange} placeholder="Email" className="login-input" required />
+                        onChange={handleChange} placeholder="Name" className="login-input" required />
                     <input type="email" value={data.email} name='email'
                         onChange={handleChange} placeholder="Email" className="login-input" required />
                     <input type="password" value={data.password} name='password'

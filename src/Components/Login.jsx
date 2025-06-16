@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../main.jsx";
+import { context } from "../main";
 
 export default function Login() {
-    const { isAuthenticated, setIsAuthenticated, settoken,setcurrentEmail } = useContext(Context);
+    const { isAuthenticated, setIsAuthenticated, settoken } = useContext(context);
     const navigate = useNavigate();
     const [data, setdata] = useState({
         email: "",
@@ -22,7 +22,7 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:4000/api/use/log", {
+            const response = await fetch("http://localhost:5000/api/payment/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -38,7 +38,6 @@ export default function Login() {
             if (response.ok) {
                 console.log("Login successful:", result);
                 settoken(result.token);
-                setcurrentEmail(data.email);
                 setIsAuthenticated(true);
             } else {
                 console.error("Login failed:", result.message);
@@ -50,7 +49,7 @@ export default function Login() {
 
 
     if (isAuthenticated) {
-        navigate("/allmessages");
+        navigate("/Payment-gateway");
     }
 
     return (

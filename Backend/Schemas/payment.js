@@ -13,7 +13,7 @@ const paymentSchema = new Schema({
   },
   currency: {
     type: String,
-    default: 'inr',
+    default: 'usd',
   },
   paymentIntentId: {
     type: String,
@@ -30,4 +30,4 @@ const paymentSchema = new Schema({
   }
 });
 
-export default Payment = mongoose.model('Payment', paymentSchema);
+export const Payment = mongoose.model('Payment', paymentSchema);
