@@ -30,7 +30,7 @@ export default function Dashboard() {
 
             const result = await response.json();
             console.log(result);
-
+            navi("/checkout-form", { state: { paymentIntentId: result.paymentIntentId } });
         } catch (error) {
             console.error("Error during login:", error);
         }

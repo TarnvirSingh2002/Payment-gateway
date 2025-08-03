@@ -88,8 +88,13 @@ router.post('/create-payment-intent', middle, async (req, res) => {
       amount,
       currency,
       customer: customerId, // it is not a name
+      automatic_payment_methods: {
+        enabled: true,
+        allow_redirects: 'never' // ✅ prevents redirect-required methods
+      }
     });
 
+    console.log(paymentIntent);
     await Payment.create({
       userId,
       amount,
@@ -100,9 +105,27 @@ router.post('/create-payment-intent', middle, async (req, res) => {
 
     res.send({
       clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id
     });
   } catch (err) {
     res.status(500).send({ error: err.message });
+  }
+});
+
+//working to confrm the payment
+router.post('/confirm-payment', async (req, res) => {
+  const { paymentIntentId } = req.body;
+
+  try {
+    // Confirm the payment intent
+    // const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId);
+     const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId, {
+      payment_method: 'pm_card_visa',
+      return_url: 'https://856c75fdd51f.ngrok-free.app/payment-complete'
+    });
+    res.status(200).send({ success: true, paymentIntent });
+  } catch (error) {
+    res.status(400).send({ error: error.message });
   }
 });
 
