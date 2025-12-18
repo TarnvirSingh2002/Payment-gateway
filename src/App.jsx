@@ -19,7 +19,6 @@ export default function App() {
           <Route path="/payment-complete" element={<PaymentComplete />} />
         </Routes>
       </BrowserRouter>
-      
     </div>
   )
 }

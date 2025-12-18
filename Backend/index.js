@@ -14,7 +14,7 @@ export const stripe = new Stripe(process.env.SECKRET_KEY);
 
 db();
 
-app.use('/api/payment/web',webHook);
+app.use('/api/payment/web',webHook); //this is neither called by the frontend or by the backend it is call by the stripe when there is an event occur!
 app.use(express.json());
 app.use('/api/payment', router);
 

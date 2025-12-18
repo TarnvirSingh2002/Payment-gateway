@@ -88,10 +88,11 @@ router.post('/create-payment-intent', middle, async (req, res) => {
       amount,
       currency,
       customer: customerId, // it is not a name
-      automatic_payment_methods: {
+      automatic_payment_methods: {//it enables Automatically choose the best payment methods for this customer based on region, currency, and according to your bank facility
         enabled: true,
-        allow_redirects: 'never' // ✅ prevents redirect-required methods
+        allow_redirects: 'never' //  prevents redirect-required methods
       }
+      //instead of automatic_payment_methods we can use payment_method_types: ['card', 'upi', 'netbanking'] in this we can define what methods we want to use
     });
 
     console.log(paymentIntent);
