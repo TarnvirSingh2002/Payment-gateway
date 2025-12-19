@@ -8,6 +8,7 @@ router.post(
   bodyParser.raw({ type: "application/json" }), // ✅ RAW BODY HERE
   (req, res) => {
     const sig = req.headers["stripe-signature"];
+    //this sign is used to verify the req.body wheather it is modified or not
     let event;
 
     try {

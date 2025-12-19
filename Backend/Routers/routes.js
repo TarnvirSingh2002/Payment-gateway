@@ -122,7 +122,8 @@ router.post('/confirm-payment', async (req, res) => {
     // const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId);
      const paymentIntent = await stripe.paymentIntents.confirm(paymentIntentId, {
       payment_method: 'pm_card_visa',
-      return_url: 'https://856c75fdd51f.ngrok-free.app/payment-complete'
+      return_url: 'https://856c75fdd51f.ngrok-free.app/payment-complete' //we use this return url to come back to its website after the stripe payment 
+      // (here we can also use localhost but it is not accessible from the outside that's why we dont use this) 
     });
     res.status(200).send({ success: true, paymentIntent });
   } catch (error) {
